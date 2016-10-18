@@ -1,7 +1,7 @@
 # grond
 
 [![Build Status](https://travis-ci.org/bcho/grond.svg)](https://travis-ci.org/bcho/grond)
-![Development Status](https://img.shields.io/badge/status-1.0.0-brightgreen.svg?style=flat-square)
+[![Clojars Project](https://img.shields.io/clojars/v/rocks.hbc/grond.svg)](https://clojars.org/rocks.hbc/grond)
 
 ## Usage
 
