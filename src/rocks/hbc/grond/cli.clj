@@ -30,7 +30,7 @@
      (let [~(first fn-args) ctx#
            ~(second fn-args) (cli/parse-opts args# ~cmd-options)]
        ~@fn-body)
-     (assoc ctx# ::not-executed? false)))
+     (assoc ctx# ::executed? true)))
 
 (defn- usage-with-subcmds
   [doc sub-cmds]
@@ -129,12 +129,15 @@
   [^CliCommand cmd]
   (println (p/->usage cmd)))
 
+(defn executed?
+  [{executed? ::executed?}]
+  (some? executed?))
+
 (defn execute!
   "Execute a command with arguments."
   [^CliCommand cmd args]
-  (let [ctx {::root-cmd cmd ::not-executed? true}
-        {not-executed? ::not-executed?} (p/execute! cmd ctx args)]
-    (when not-executed?
+  (let [ctx {::root-cmd cmd}]
+    (when-not (executed? (p/execute! cmd ctx args))
       (show-usage cmd)
       (System/exit 1))))
 
