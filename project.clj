@@ -1,4 +1,4 @@
-(defproject rocks.hbc/grond "0.1.0-SNAPSHOT"
+(defproject rocks.hbc/grond "1.0.0"
   :description "A simple package for writing commandline application."
   :url "https://github.com/bcho/grond"
   :license {:name "MIT"
