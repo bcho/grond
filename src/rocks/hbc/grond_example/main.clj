@@ -1,14 +1,6 @@
-# grond
-
-## Usage
-
-```clojure
-(ns my.cool.application
+(ns rocks.hbc.grond-example.main
   (:require [rocks.hbc.grond.cli :as g]))
 
-; Invoke as:
-;
-;   app ping --times 5
 (g/defcommand ping
   :options [["-t" "--times TIMES"
              :default 0
@@ -17,18 +9,17 @@
   (dotimes [n times]
     (println n)))
 
-; Invoke as:
-;
-;   app a-plusb -a 10 -b 32
 (g/defcommand a+b
   :name :a-plus-b
   :options [["-a" nil
+             :id :a
              :default 0
              :parse-fn #(Integer/parseInt %)]
             ["-b" nil
+             :id :b
              :default 0
              :parse-fn #(Integer/parseInt %)]]
-  [ctx {{:keys [a b]} :options}]
+  [ctx {{:keys [a b]} :options :as p}]
   (println (+ a b)))
 
 (g/defcommand cli
@@ -37,8 +28,3 @@
 (defn -main
   [& args]
   (g/execute! cli args))
-```
-
-## License
-
-MIT
